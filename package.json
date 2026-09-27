@@ -1,0 +1,15 @@
+{
+  "name": "nexora-digital-rdc",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare:static": "node scripts/prepare-static.mjs",
+    "build": "npm run prepare:static && node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "dev": "node scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
