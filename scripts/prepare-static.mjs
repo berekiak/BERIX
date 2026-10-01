@@ -52,7 +52,7 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
             "@id": `${canonicalOrigin}/#organization`,
             name: "Nexora Digital",
             url: canonicalOrigin,
-            logo: `${canonicalOrigin}/nexora-logo.webp`,
+            logo: `${canonicalOrigin}/nexora-concept-lockup.svg`,
             slogan: "Créer. Innover. Transformer.",
             email: "nexoradigitalrdc@gmail.com",
             telephone: "+243858181330",
@@ -100,6 +100,27 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
     html = html.replace("</head>", `${social}</head>`);
   }
 
+  // Replace the generated illustrations with licensed editorial photography.
+  const descriptions = {
+    "/nexora-hero-city.webp": ["Espace de travail numérique avec écrans et éclairage discret", 1067, 1600],
+    "/nexora-solutions-architecture.webp": ["Ordinateur portable et téléphone dans un espace de travail", 1600, 1067],
+    "/expertise-sites-web.webp": ["Code de développement web affiché sur un écran", 1400, 935],
+    "/expertise-applications.webp": ["Ordinateur portable et téléphone pour les expériences multiécrans", 1600, 1067],
+    "/expertise-outils-de-gestion.webp": ["Analyse de données et outils de travail sur un bureau", 1400, 897],
+    "/expertise-design-ui-ux.webp": ["Travail de conception et de choix de couleurs sur un carnet", 1400, 933],
+    "/expertise-transformation-numerique.webp": ["Préparation d’une stratégie numérique avec un ordinateur et des notes", 1400, 897],
+    "/expertise-sur-mesure.webp": ["Code source d’une solution numérique sur un écran", 1400, 935],
+    "/nexora-concept-mark.svg": ["", 48, 52],
+    "/nexora-concept-lockup.svg": ["Nexora Digital", 330, 76],
+  };
+  html = html.replace(/<img\b[^>]*>/g, (tag) => {
+    const source = tag.match(/src="([^"]+)"/)?.[1];
+    const description = descriptions[source];
+    if (!description) return tag;
+    return tag.replace(/alt="[^"]*"/, `alt="${description[0]}"`)
+      .replace(/width="[^"]*"/, `width="${description[1]}"`)
+      .replace(/height="[^"]*"/, `height="${description[2]}"`);
+  });
   html = html.replace("</head>", '<link rel="stylesheet" href="/site.css"/></head>');
 
   if (!html.includes('src="/site.js"')) {

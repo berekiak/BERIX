@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" role="img" aria-labelledby="title desc">
-  <title id="title">Nexora Digital</title>
-  <desc id="desc">Identité Nexora Digital avec monogramme orbital</desc>
-  <defs><linearGradient id="g" x1="18" y1="15" x2="95" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#2AD5FF"/><stop offset="0.48" stop-color="#1257FF"/><stop offset="1" stop-color="#082A7C"/></linearGradient></defs>
-  <g transform="translate(8 8)"><rect width="124" height="124" rx="34" fill="#07192F"/><ellipse cx="62" cy="62" rx="44" ry="27" fill="none" stroke="url(#g)" stroke-width="4" transform="rotate(-35 62 62)"/><path d="M35 87V37h12l30 31V37h12v50H78L47 55v32z" fill="#fff"/><circle cx="98" cy="31" r="6" fill="#2AD5FF"/></g>
-  <text x="158" y="70" fill="#071321" font-family="Inter,Arial,sans-serif" font-size="50" font-weight="760" letter-spacing="-2">Nexora</text>
-  <text x="160" y="102" fill="#1257FF" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="760" letter-spacing="7">DIGITAL</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 76" width="330" height="76"><title>Nexora Digital</title><path fill="#c9ad78" d="M4 58V14h9l22 29V14h9v44h-9L13 29v29z"/><text x="67" y="41" fill="#f4f1e9" font-family="Arial,sans-serif" font-weight="500" font-size="30" letter-spacing="5">NEXORA</text><text x="69" y="62" fill="#c9ad78" font-family="Arial,sans-serif" font-size="10" letter-spacing="6">DIGITAL</text></svg>

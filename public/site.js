@@ -55,6 +55,8 @@
       form.append(element);
     }
     element.className = `form-status ${kind}`;
+    element.hidden = false;
+    element.tabIndex = -1;
     element.textContent = message;
     element.focus?.();
   }
@@ -134,6 +136,8 @@
 
     function saveVisibleFields() {
       new FormData(form).forEach((value, key) => { data[key] = value; });
+      const consent = form.querySelector('[name=consent]');
+      if (consent) data.consent = consent.checked ? "on" : "";
     }
 
     function frame(content, nextLabel = "Continuer", back = true) {
@@ -153,6 +157,8 @@
         form.innerHTML = frame(`<h2>Vos coordonnées</h2><div class="form-grid"><label class="field">Votre nom *<input name="name" required minlength="2" maxlength="120" autocomplete="name" value="${escapeHtml(data.name || "")}"/></label><label class="field">Votre email *<input name="email" type="email" required maxlength="254" autocomplete="email" value="${escapeHtml(data.email || "")}"/></label></div><div class="form-grid"><label class="field">Entreprise<input name="company" maxlength="160" autocomplete="organization" value="${escapeHtml(data.company || "")}"/></label><label class="field">Téléphone (facultatif)<input name="phone" type="tel" maxlength="40" autocomplete="tel" value="${escapeHtml(data.phone || "")}"/></label></div><div class="quote-summary"><span><strong>Service :</strong> ${escapeHtml(data.service)}</span><span><strong>Budget :</strong> ${escapeHtml(data.budget)}</span><span><strong>Délai :</strong> ${escapeHtml(data.deadline)}</span></div><div class="consent"><input id="quote-consent" name="consent" type="checkbox" required/><label for="quote-consent">J’accepte que ces informations soient utilisées pour traiter ma demande. <a href="/confidentialite">Politique de confidentialité</a>.</label></div>`, "Envoyer ma demande de devis");
       }
       form.querySelector("[data-back]")?.addEventListener("click", () => { saveVisibleFields(); step -= 1; render(); });
+      const consent = form.querySelector('[name=consent]');
+      if (consent) consent.checked = data.consent === "on";
     }
 
     form.addEventListener("submit", async (event) => {
