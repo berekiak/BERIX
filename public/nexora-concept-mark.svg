@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">Nexora Digital</title>
+  <desc id="desc">Monogramme N orbital bleu</desc>
+  <defs><linearGradient id="g" x1="16" y1="14" x2="82" y2="82" gradientUnits="userSpaceOnUse"><stop stop-color="#2AD5FF"/><stop offset="0.48" stop-color="#1257FF"/><stop offset="1" stop-color="#082A7C"/></linearGradient></defs>
+  <rect width="96" height="96" rx="26" fill="#07192F"/>
+  <ellipse cx="48" cy="48" rx="34" ry="21" fill="none" stroke="url(#g)" stroke-width="3" transform="rotate(-35 48 48)"/>
+  <path d="M27 68V28h9l24 25V28h9v40h-8L36 42v26z" fill="#fff"/>
+  <circle cx="76" cy="25" r="5" fill="#2AD5FF"/>
+</svg>

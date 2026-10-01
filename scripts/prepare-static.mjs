@@ -12,17 +12,26 @@ function walk(directory) {
   });
 }
 
-for (const file of walk(publicDir.pathname).filter((path) => path.endsWith("index.html"))) {
+for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".html"))) {
   let html = readFileSync(file, "utf8");
 
   // The production snapshot is progressively enhanced by /site.js. Removing
   // framework hydration avoids obsolete runtime requests after migration.
   html = html.replace(/<script\b(?![^>]*type="application\/ld\+json")[^>]*>[\s\S]*?<\/script>/gi, "");
   html = html.replace(/<link\b[^>]*rel="modulepreload"[^>]*\/?>(?:<\/link>)?/gi, "");
+  html = html.replace(/<link\b[^>]*href="\/_next\/static\/css\/[^"]+"[^>]*\/?>(?:<\/link>)?/gi, "");
+  html = html.replace(/<link\b[^>]*rel="preload"[^>]*imageSrcSet="[^"]*"[^>]*\/?>(?:<\/link>)?/gi, "");
+  html = html.replace(/<link\b[^>]*href="\/site\.css"[^>]*\/?>(?:<\/link>)?/gi, "");
   html = html.replace(/\s+srcSet="[^"]*"/gi, "");
+  html = html.replace(/\s+(?:data-nimg|imageSizes|fetchPriority)="[^"]*"/gi, "");
   html = html.replace(/src="\/_next\/image\?url=%2Fnexora-header-logo\.webp&amp;w=3840&amp;q=75"/g, 'src="/nexora-header-logo.webp"');
   html = html.replace(/src="\/_next\/image\?url=%2Fnexora-header-logo\.webp&w=3840&q=75"/g, 'src="/nexora-header-logo.webp"');
   html = html.replace(previousOrigin, canonicalOrigin).replaceAll(previousOrigin, canonicalOrigin);
+  html = html.replaceAll('src="/nexora-header-logo.webp"', 'src="/nexora-concept-mark.svg"');
+  html = html.replaceAll('src="/nexora-logo.webp"', 'src="/nexora-concept-lockup.svg"');
+  html = html.replaceAll(`${canonicalOrigin}/nexora-logo.webp`, `${canonicalOrigin}/nexora-concept-lockup.svg`);
+  html = html.replace("Le site est publié via ChatGPT Sites. Les coordonnées légales de l’hébergeur restent à confirmer pour la version publique.", "Le site est hébergé et publié sur l’infrastructure Vercel. Les informations contractuelles et légales de l’hébergeur sont disponibles sur le site officiel de Vercel.");
+  html = html.replace('class="skip-link"', 'class="skip"');
 
   if (relative(publicDir.pathname, file).split(sep).join("/") === "index.html") {
     html = html.replace(
@@ -88,10 +97,10 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith("inde
       `<meta name="twitter:description" content="${description}"/>`,
       '<meta name="twitter:image" content="https://nexora-digital-rdc.vercel.app/nexora-hero-city.webp"/>',
     ].join("");
-    html = html.replace("</head>", `${social}<link rel="stylesheet" href="/site.css"/></head>`);
-  } else if (!html.includes('href="/site.css"')) {
-    html = html.replace("</head>", '<link rel="stylesheet" href="/site.css"/></head>');
+    html = html.replace("</head>", `${social}</head>`);
   }
+
+  html = html.replace("</head>", '<link rel="stylesheet" href="/site.css"/></head>');
 
   if (!html.includes('src="/site.js"')) {
     html = html.replace("</body>", '<script src="/site.js" defer></script></body>');
