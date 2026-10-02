@@ -14,9 +14,15 @@
       ]
     },
     {
-      "source": "/(.*)\\.(webp|svg|css|js)",
+      "source": "/(.*)\\.(webp|svg|woff)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(css|js)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
   ]

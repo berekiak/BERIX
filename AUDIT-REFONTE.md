@@ -58,10 +58,12 @@ La refonte reste sur une branche de prévisualisation. Elle pourra être fusionn
 - Toutes les illustrations IA présentes dans l'interface remplacées par cinq photographies réelles sous licence Unsplash. Sources et affectations dans ASSETS-LICENSES.md. Les photos sont illustratives, sans prétendre montrer l'équipe ou les locaux de l'agence.
 - Mise en forme manquante des grandes images des pages de services corrigée. Dimensions réelles des images renseignées pour réserver leur espace.
 - Message d'erreur du devis désormais visible et accessible au clavier ; consentement conservé correctement entre les étapes.
+- URLs des styles, scripts, polices et images versionnées à partir de leur contenu lors du build. Le cache des fichiers à nom fixe est revalidé, afin d'éviter qu'un visiteur conserve l'ancien design après une mise à jour.
 
 ### Vérifications effectuées
 
 - Build de production et contrôle des 17 pages : réussis.
+- Transformation du build exécutée plusieurs fois : résultat stable ; modifier le CSS change son URL, restaurer le CSS restitue la version initiale. Toutes les ressources versionnées correspondent à des fichiers présents.
 - Contrôle des liens internes et ressources locales, un H1 par page : aucune erreur détectée.
 - Toutes les images WebP ouvertes et vérifiées ; aucune image vide. Aucun secret ajouté au frontend ou au dépôt.
 - Accueil ouvert dans Chrome distant : photographies et logo chargés, police Manrope chargée, aucun débordement horizontal. Aucun défaut JavaScript du site observé ; l'extension du navigateur distant produit ses propres logs.

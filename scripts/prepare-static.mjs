@@ -1,9 +1,26 @@
-import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join, relative, sep } from "node:path";
 
 const publicDir = new URL("../public/", import.meta.url);
 const previousOrigin = "https://nexora-digital.kalonjiberekia.chatgpt.site";
 const canonicalOrigin = "https://nexora-digital-rdc.vercel.app";
+
+function versionAsset(url) {
+  const bare = url.split("?")[0];
+  const path = bare.startsWith(canonicalOrigin) ? bare.slice(canonicalOrigin.length) : bare;
+  if (!path.startsWith("/") || !/\.(?:css|js|webp|svg|woff)$/.test(path)) return url;
+  const file = join(publicDir.pathname, path.slice(1));
+  if (!existsSync(file)) return url;
+  const version = createHash("sha256").update(readFileSync(file)).digest("hex").slice(0, 12);
+  return `${bare}?v=${version}`;
+}
+
+// Version CSS dependencies before hashing the stylesheet itself.
+const stylesheet = join(publicDir.pathname, "site.css");
+const css = readFileSync(stylesheet, "utf8").replace(/url\(['"]?(\/[^\s)'"?]+)(?:\?[^\s)'" ]*)?['"]?\)/g,
+  (_, url) => `url("${versionAsset(url)}")`);
+writeFileSync(stylesheet, css);
 
 function walk(directory) {
   return readdirSync(directory).flatMap((name) => {
@@ -21,7 +38,7 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
   html = html.replace(/<link\b[^>]*rel="modulepreload"[^>]*\/?>(?:<\/link>)?/gi, "");
   html = html.replace(/<link\b[^>]*href="\/_next\/static\/css\/[^"]+"[^>]*\/?>(?:<\/link>)?/gi, "");
   html = html.replace(/<link\b[^>]*rel="preload"[^>]*imageSrcSet="[^"]*"[^>]*\/?>(?:<\/link>)?/gi, "");
-  html = html.replace(/<link\b[^>]*href="\/site\.css"[^>]*\/?>(?:<\/link>)?/gi, "");
+  html = html.replace(/<link\b[^>]*href="\/site\.css(?:\?[^"]*)?"[^>]*\/?>(?:<\/link>)?/gi, "");
   html = html.replace(/\s+srcSet="[^"]*"/gi, "");
   html = html.replace(/\s+(?:data-nimg|imageSizes|fetchPriority)="[^"]*"/gi, "");
   html = html.replace(/src="\/_next\/image\?url=%2Fnexora-header-logo\.webp&amp;w=3840&amp;q=75"/g, 'src="/nexora-header-logo.webp"');
@@ -114,7 +131,7 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
     "/nexora-concept-lockup.svg": ["Nexora Digital", 330, 76],
   };
   html = html.replace(/<img\b[^>]*>/g, (tag) => {
-    const source = tag.match(/src="([^"]+)"/)?.[1];
+    const source = tag.match(/src="([^"]+)"/)?.[1]?.split("?")[0];
     const description = descriptions[source];
     if (!description) return tag;
     return tag.replace(/alt="[^"]*"/, `alt="${description[0]}"`)
@@ -126,6 +143,9 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
   if (!html.includes('src="/site.js"')) {
     html = html.replace("</body>", '<script src="/site.js" defer></script></body>');
   }
+
+  html = html.replace(/((?:src|href|content)=")([^"]+\.(?:css|js|webp|svg|woff))(?:\?[^"]*)?"/g,
+    (_, prefix, url) => `${prefix}${versionAsset(url)}"`);
 
   writeFileSync(file, html);
 }

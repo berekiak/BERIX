@@ -24,6 +24,8 @@ npm run build
 
 Le résultat de production est créé dans `dist/`.
 
+Le build ajoute une version basée sur le contenu aux URLs des styles, scripts, images et polices. Toute modification d'un asset produit une nouvelle URL, pour que les visiteurs chargent la dernière identité visuelle.
+
 ## Variables d’environnement
 
 Copier `.env.example` vers `.env.local` pour le développement local. La clé Resend doit être configurée exclusivement comme variable serveur :
