@@ -51,6 +51,10 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
   html = html.replace('class="skip-link"', 'class="skip"');
 
   if (relative(publicDir.pathname, file).split(sep).join("/") === "index.html") {
+    // Public ownership verification for Nexora Digital's Google account.
+    if (!html.includes('name="google-site-verification"')) {
+      html = html.replace("</head>", '<meta name="google-site-verification" content="e-Y7iPbK5AiBb_bCbo7nMaer0yS_as4EZ6gMP_0mZGs"/></head>');
+    }
     html = html.replace(
       "<title>Nexora Digital — Créer. Innover. Transformer.</title>",
       "<title>Nexora Digital RDC | Agence web et solutions numériques à Kinshasa</title>",

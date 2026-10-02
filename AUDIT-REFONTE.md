@@ -49,7 +49,7 @@ Périmètre : version locale issue du dépôt `berekiak/BERIX`, branche de trava
 
 ## Étape suivante
 
-La refonte reste sur une branche de prévisualisation. Elle pourra être fusionnée vers `main` et publiée en production après validation visuelle du propriétaire de Nexora Digital.
+La première prévisualisation a été remplacée par la seconde refonte sombre, publiée en production le 2 octobre 2026 après les contrôles du build et des parcours de formulaire.
 
 ## Seconde refonte — Noir / Atelier — 2 octobre 2026
 
@@ -74,4 +74,8 @@ La refonte reste sur une branche de prévisualisation. Elle pourra être fusionn
 
 ### Limites et état de publication
 
-La refonte est publiée en aperçu sur la branche redesign-signal-white. La production existante est conservée. Les adaptations CSS mobile et tablette sont présentes, mais aucun test sur iPhone physique, tablette physique ou Safari iOS n'a été effectué dans cet environnement. Aucun score Lighthouse supplémentaire n'est revendiqué.
+La refonte est publiée sur `main` et sur https://nexora-digital-rdc.vercel.app/ le 2 octobre 2026. Les adaptations CSS mobile et tablette sont présentes, mais aucun test sur iPhone physique, tablette physique ou Safari iOS n'a été effectué dans cet environnement. Aucun score Lighthouse supplémentaire n'est revendiqué.
+
+### Google Search Console
+
+Propriété avec préfixe https://nexora-digital-rdc.vercel.app/ créée dans le compte officiel Nexora Digital. Balise publique de vérification intégrée au build ; validation et soumission du sitemap en cours.
