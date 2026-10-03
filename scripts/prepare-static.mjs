@@ -102,6 +102,9 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
         ],
       })}</script>`,
     );
+    html = html
+      .replace("Construisons votre projet", "Demander un devis")
+      .replace('href="/services" class="text-link">Découvrir nos expertises', 'href="/realisations" class="text-link">Découvrir nos réalisations');
   }
 
   if (!html.includes('name="twitter:card"')) {
@@ -123,14 +126,14 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
 
   // Replace the generated illustrations with licensed editorial photography.
   const descriptions = {
-    "/nexora-hero-city.webp": ["Espace de travail numérique avec écrans et éclairage discret", 1067, 1600],
-    "/nexora-solutions-architecture.webp": ["Ordinateur portable et téléphone dans un espace de travail", 1600, 1067],
-    "/expertise-sites-web.webp": ["Code de développement web affiché sur un écran", 1400, 935],
-    "/expertise-applications.webp": ["Ordinateur portable et téléphone pour les expériences multiécrans", 1600, 1067],
-    "/expertise-outils-de-gestion.webp": ["Analyse de données et outils de travail sur un bureau", 1400, 897],
-    "/expertise-design-ui-ux.webp": ["Travail de conception et de choix de couleurs sur un carnet", 1400, 933],
-    "/expertise-transformation-numerique.webp": ["Préparation d’une stratégie numérique avec un ordinateur et des notes", 1400, 897],
-    "/expertise-sur-mesure.webp": ["Code source d’une solution numérique sur un écran", 1400, 935],
+    "/nexora-hero-city.webp": ["Portail numérique abstrait aux reflets indigo et cyan, univers visuel de Nexora Digital", 1600, 928],
+    "/nexora-solutions-architecture.webp": ["Écosystème modulaire de solutions numériques et interfaces connectées", 1440, 1066],
+    "/expertise-sites-web.webp": ["Composition numérique abstraite représentant la création de sites web", 1400, 880],
+    "/expertise-applications.webp": ["Composition numérique abstraite représentant les applications connectées", 1400, 880],
+    "/expertise-outils-de-gestion.webp": ["Composition numérique abstraite représentant les outils de gestion", 1400, 880],
+    "/expertise-design-ui-ux.webp": ["Composition numérique abstraite représentant le design d’interfaces", 1400, 880],
+    "/expertise-transformation-numerique.webp": ["Composition numérique abstraite représentant la transformation digitale", 1400, 880],
+    "/expertise-sur-mesure.webp": ["Composition numérique abstraite représentant une solution numérique sur mesure", 1400, 880],
     "/nexora-concept-mark.svg": ["", 48, 52],
     "/nexora-concept-lockup.svg": ["Nexora Digital", 330, 76],
   };
@@ -141,6 +144,15 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
     return tag.replace(/alt="[^"]*"/, `alt="${description[0]}"`)
       .replace(/width="[^"]*"/, `width="${description[1]}"`)
       .replace(/height="[^"]*"/, `height="${description[2]}"`);
+  });
+  html = html.replace(/<img\b[^>]*src="\/nexora-hero-city\.webp[^>]*>/g, (tag) => {
+    const responsive = 'srcset="/nexora-portal-640.webp 640w, /nexora-portal-960.webp 960w, /nexora-portal-1440.webp 1440w, /nexora-portal-1920.webp 1920w" sizes="100vw"';
+    return tag.replace(/\sloading="[^"]*"/g, "").replace(/\sfetchPriority="[^"]*"/g, "")
+      .replace(/<img/, `<img ${responsive} loading="eager" fetchpriority="high"`);
+  });
+  html = html.replace(/<img\b[^>]*src="\/nexora-solutions-architecture\.webp[^>]*>/g, (tag) => {
+    const responsive = 'srcset="/nexora-ecosystem-640.webp 640w, /nexora-ecosystem-960.webp 960w, /nexora-ecosystem-1440.webp 1440w" sizes="(max-width: 820px) 90vw, 52vw"';
+    return tag.replace(/<img/, `<img ${responsive}`);
   });
   html = html.replace("</head>", '<link rel="stylesheet" href="/site.css"/></head>');
 

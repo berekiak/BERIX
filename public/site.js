@@ -1,4 +1,7 @@
 (() => {
+  const path = location.pathname.replace(/\/$/, "") || "/";
+  document.body.classList.toggle("home", path === "/");
+
   const services = [
     "Sites web",
     "Applications",
@@ -37,6 +40,40 @@
     document.addEventListener("keydown", (event) => event.key === "Escape" && close());
     document.addEventListener("click", (event) => {
       if (!navigation.contains(event.target) && !button.contains(event.target)) close();
+    });
+  }
+
+  function setupExperience() {
+    const header = document.querySelector(".header");
+    const updateHeader = () => header?.classList.toggle("is-scrolled", scrollY > 24);
+    updateHeader();
+    addEventListener("scroll", updateHeader, { passive: true });
+
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reveals = document.querySelectorAll(".reveal");
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      reveals.forEach((element) => element.classList.add("is-visible"));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -7%" });
+      reveals.forEach((element) => observer.observe(element));
+    }
+
+    const hero = document.querySelector(".hero");
+    if (!hero || reduceMotion || !matchMedia("(pointer: fine)").matches) return;
+    hero.addEventListener("pointermove", (event) => {
+      const bounds = hero.getBoundingClientRect();
+      hero.style.setProperty("--mx", ((event.clientX - bounds.left) / bounds.width - 0.5).toFixed(3));
+      hero.style.setProperty("--my", ((event.clientY - bounds.top) / bounds.height - 0.5).toFixed(3));
+    }, { passive: true });
+    hero.addEventListener("pointerleave", () => {
+      hero.style.setProperty("--mx", "0");
+      hero.style.setProperty("--my", "0");
     });
   }
 
@@ -201,6 +238,7 @@
   }
 
   setupMenu();
+  setupExperience();
   setupContactForm();
   setupQuoteForm();
 })();
