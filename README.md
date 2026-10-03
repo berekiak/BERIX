@@ -54,7 +54,7 @@ Ne jamais exposer `RESEND_API_KEY` dans le navigateur, dans une variable publiqu
 ## Déploiement Vercel
 
 1. Importer ce dépôt dans Vercel.
-2. Conserver la commande `npm run build` et le dossier de sortie `dist`.
+2. Conserver la commande `npm run build && npm run check && npm test` et le dossier de sortie `dist` : chaque publication est bloquée si un contrôle échoue.
 3. Ajouter `RESEND_API_KEY` aux variables d’environnement de production.
 4. Déployer, puis vérifier `/contact`, `/devis`, `/robots.txt` et `/sitemap.xml`.
 

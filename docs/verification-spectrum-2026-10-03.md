@@ -2,7 +2,9 @@
 
 ## Périmètre
 
-Préversion de la branche `refonte-spectrum`, dans le dépôt `berekiak/BERIX`. La production n’a pas été remplacée : la validation visuelle du propriétaire reste attendue.
+Préversion de la branche `refonte-spectrum`, puis publication sur `main` dans le dépôt `berekiak/BERIX`, explicitement demandée par le propriétaire le 3 octobre 2026. La refonte est publiée sur https://nexora-digital-rdc.vercel.app/.
+
+La version fonctionnelle contrôlée en production correspond au commit `09c4223230ed28920fc6d95e3e94bf40a6f46340`, déploiement `dpl_G6sne6zrzGDuTx5cjDJd2xCYM87M`, statut Vercel `READY`. Le présent bilan et le renforcement du script de vérification peuvent ensuite être publiés sans modification des assets ou du backend du site.
 
 ## Corrections effectuées
 
@@ -39,12 +41,34 @@ Préversion de la branche `refonte-spectrum`, dans le dépôt `berekiak/BERIX`. 
 
 Les cadres responsive temporaires sont retirés du build final ; aucune route de contrôle `__qa` n’est livrée.
 
+## Contrôles après publication
+
+- Les 16 pages publiques répondent HTTP 200 sans authentification ; métadonnées et liens WhatsApp vérifiés.
+- L’accueil a été ouvert et observé dans le navigateur cloud : nouvelle identité visuelle présente, canonical correcte et images chargées.
+- La page inexistante répond HTTP 404 ; la route de contrôle temporaire `__qa` répond également HTTP 404.
+- `/robots.txt` et `/sitemap.xml` répondent HTTP 200.
+- Les 16 pages ont été contrôlées de nouveau avec leurs en-têtes HTTP : aucun `noindex` HTML ou HTTP ; le robots.txt permet l’exploration des pages publiques et exclut seulement l’API.
+- Deux nouveaux envois ont été effectués via l’API de production : contact `NX-7BAABCA3`, devis `NX-B7CAB4AD`, chacun HTTP 201 avec `emailSent: true`.
+- Aucun journal d’erreur/fatal n’a été retourné pour le déploiement contrôlé. Cela n’est pas une garantie d’absence de toute erreur future.
+- La réception dans la boîte officielle et le lancement de WhatsApp sur des appareils physiques restent non vérifiés pour les raisons exposées ci-dessus.
+- L’API publique PageSpeed a été sollicitée pour la version mobile de production ; réponse HTTP 429, quota journalier dépassé. Aucun score Lighthouse n’a pu être obtenu.
+- Le connecteur GSC Wizard n’affiche aucune propriété connectée : l’état actuel du sitemap dans Google Search Console ne peut pas être recontrôlé par ce connecteur. Cela ne signifie pas que la propriété auparavant créée a été supprimée.
+
+La commande de build Vercel inclut désormais la validation statique et les tests automatisés, afin qu’un échec bloque les prochaines publications.
+
 ## Vérifications restant nécessaires
 
 1. Reconnecter la boîte officielle et vérifier les deux références ci-dessus, y compris le dossier spam.
 2. Faire un envoi final depuis l’interface live du contact et du devis, puis vérifier la confirmation et la réception correspondante.
 3. Tester le bouton WhatsApp sur un véritable iPhone/Safari, une tablette et un ordinateur disposant de WhatsApp ; les largeurs Chromium ne prouvent pas le lancement d’une application sur un appareil réel.
-4. Valider visuellement la refonte avant sa publication sur la branche principale.
-5. Après publication, recontrôler les en-têtes d’indexation, canonical, sitemap, redirections, et mesurer Lighthouse/PageSpeed. Aucun score Core Web Vitals mesuré n’est revendiqué ici.
+4. Revoir visuellement la version publiée et signaler les éventuels ajustements souhaités.
+5. Mesurer Lighthouse/PageSpeed et recontrôler Search Console. Aucun score Core Web Vitals mesuré n’est revendiqué ici.
 
 Le domaine personnalisé et le traitement du sitemap dans Search Console restent des points distincts ; aucune première place Google ni indexation immédiate n’est garantie.
+
+### Dernières actions Search Console
+
+1. Dans le compte Google propriétaire, sélectionner la propriété URL-prefix `https://nexora-digital-rdc.vercel.app/`. Si elle n’existe pas dans ce compte, l’ajouter avec cette URL exacte.
+2. Vérifier la propriété si demandé, en utilisant la balise HTML présente sur la page d’accueil et le bouton « Vérifier ». Pour un futur domaine personnalisé, utiliser la propriété de domaine et l’enregistrement DNS fourni par Google.
+3. Dans « Sitemaps », soumettre ou recontrôler `https://nexora-digital-rdc.vercel.app/sitemap.xml` et vérifier que le statut devient « Réussite ».
+4. Dans « Inspection de l’URL », inspecter l’accueil, `/services`, `/contact` et `/devis`, tester l’URL publiée et demander l’indexation lorsqu’elle est disponible. L’acceptation et le délai dépendent de Google.

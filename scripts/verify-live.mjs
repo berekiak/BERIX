@@ -4,10 +4,10 @@ import { randomUUID } from "node:crypto";
 import assert from "node:assert/strict";
 
 const origin = new URL(process.argv[2] || "https://nexora-digital-rdc.vercel.app").origin;
-const cookieFile = process.argv[3];
+const cookieFile = process.argv[3]?.startsWith("--") ? undefined : process.argv[3];
 const sendTests = process.argv.includes("--send-tests");
 const request = (path, method = "GET", payload) => new Promise((resolve, reject) => {
-  const args = ["-sS", "--max-time", "35", "-w", "\n%{http_code}", "-X", method];
+  const args = ["-sS", "--max-time", "35", "-D", "-", "-w", "\n%{http_code}", "-X", method];
   if (cookieFile) args.push("-b", cookieFile);
   if (payload) args.push("-H", "Content-Type: application/json", "--data-binary", "@-");
   args.push(`${origin}${path}`);
@@ -19,7 +19,14 @@ const request = (path, method = "GET", payload) => new Promise((resolve, reject)
   child.on("close", (code) => {
     if (code) return reject(new Error(error || `curl exited ${code}`));
     const boundary = output.lastIndexOf("\n");
-    resolve({ status: Number(output.slice(boundary + 1)), body: output.slice(0, boundary) });
+    let body = output.slice(0, boundary), headers = "";
+    while (/^HTTP\/\S+\s+\d{3}/.test(body)) {
+      const end = body.indexOf("\r\n\r\n");
+      if (end < 0) break;
+      headers = body.slice(0, end);
+      body = body.slice(end + 4);
+    }
+    resolve({ status: Number(output.slice(boundary + 1)), body, headers });
   });
   child.stdin.end(payload ? JSON.stringify(payload) : undefined);
 });
@@ -33,8 +40,9 @@ for (let index = 0; index < routes.length; index += 4) {
     assert.match(head, /<title>[^<]+<\/title>/, path);
     assert.match(head, /rel="canonical"/, path);
     assert.doesNotMatch(head, /noindex/i, path);
+    if (!cookieFile) assert.doesNotMatch(response.headers, /^x-robots-tag:[^\r\n]*noindex/im, path);
     assert.match(response.body, /https:\/\/wa\.me\/243858181330/, path);
-    console.log(`PAGE ${path}: HTTP 200, metadata in head, no HTML noindex, WhatsApp present`);
+    console.log(`PAGE ${path}: HTTP 200, metadata in head, ${cookieFile ? "no HTML noindex" : "no HTML/HTTP noindex"}, WhatsApp present`);
   }));
 }
 for (const path of ["/robots.txt", "/sitemap.xml"]) {
