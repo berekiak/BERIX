@@ -7,6 +7,7 @@
     "prepare:static": "node scripts/prepare-static.mjs",
     "build": "npm run prepare:static && node scripts/build.mjs",
     "check": "node scripts/check.mjs",
+    "test": "node scripts/test.mjs",
     "dev": "node scripts/serve.mjs"
   },
   "engines": {

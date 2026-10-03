@@ -20,9 +20,22 @@ Prérequis : Node.js 20 ou supérieur.
 ```bash
 npm run check
 npm run build
+npm test
 ```
 
 Le résultat de production est créé dans `dist/`.
+
+`npm test` vérifie sans envoi réel les confirmations, les erreurs réseau/serveur, les réponses malformées, la validation des demandes et le contenu des e-mails.
+
+Pour contrôler un déploiement public :
+
+```bash
+node scripts/verify-live.mjs https://nexora-digital-rdc.vercel.app
+```
+
+Le script ne transmet aucune demande par défaut. L’option explicite `--send-tests` envoie deux messages clairement identifiés comme tests à l’adresse officielle. Une préversion protégée nécessite un fichier de cookies autorisé en troisième argument. Ne jamais versionner ce fichier.
+
+Le bilan de la refonte et ses limites de vérification sont consignés dans `docs/verification-spectrum-2026-10-03.md`.
 
 Le build ajoute une version basée sur le contenu aux URLs des styles, scripts, images et polices. Toute modification d'un asset produit une nouvelle URL, pour que les visiteurs chargent la dernière identité visuelle.
 
