@@ -17,6 +17,7 @@
   --line:rgba(113,132,156,.22);
   --line-dark:rgba(196,214,235,.14);
   --gradient:linear-gradient(120deg,var(--indigo),var(--violet) 54%,var(--cyan));
+  --gradient-readable:linear-gradient(120deg,#4547c8,#6930c4 54%,#066f93);
   --shadow:0 28px 90px rgba(7,17,31,.14);
   --shadow-dark:0 28px 90px rgba(0,0,0,.3);
   --radius:22px;
@@ -54,7 +55,7 @@ body.home .header.is-scrolled{background:rgba(7,17,31,.9);border-color:var(--lin
 .menu-toggle{display:none;border:0;background:transparent;padding:8px;cursor:pointer}
 .button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 20px;border:1px solid transparent;border-radius:13px;font-weight:700;font-size:13px;letter-spacing:.01em;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s,border-color .25s,color .25s}
 .button:hover{transform:translateY(-2px)}
-.button.primary{background:var(--gradient);color:#fff;box-shadow:0 14px 34px rgba(91,92,246,.25)}
+.button.primary{background:var(--gradient-readable);color:#fff;box-shadow:0 14px 34px rgba(91,92,246,.25)}
 .button.primary:hover{box-shadow:0 18px 44px rgba(91,92,246,.38)}
 .button.ghost{border-color:rgba(255,255,255,.26);color:#fff;background:rgba(255,255,255,.05)}
 .button.secondary{background:#fff;color:var(--navy);border-color:var(--line)}
@@ -171,7 +172,19 @@ footer{padding:75px var(--gutter) 22px;background:#050c16;color:#fff;border-top:
 .footer-bottom{display:flex;gap:26px;padding-top:22px;border-top:1px solid var(--line-dark);color:#607085;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.footer-bottom span:last-child{margin-left:auto}
 .floating-whatsapp{position:fixed;right:22px;bottom:22px;z-index:90;display:flex;align-items:center;gap:8px;height:50px;padding:0 16px;border-radius:999px;background:#20c56e;color:#fff;box-shadow:0 15px 38px rgba(1,13,8,.35);font-size:12px;font-weight:700;transition:transform .2s,box-shadow .2s}.floating-whatsapp:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(1,13,8,.42)}
 
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.is-visible{opacity:1;transform:none}
+.reveal{opacity:1;transform:none}.js-motion .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}.js-motion .reveal.is-visible{opacity:1;transform:none}
+
+/* Readability and progressive enhancement, without changing the WhatsApp channel. */
+.section:not(.approach) h2 em{background-image:var(--gradient-readable)}
+.value-grid>article{background:#fff;padding:30px}
+.step:before{content:none}.step>span{color:var(--indigo);font-size:13px;font-weight:700}
+.page-body>.detail-grid{padding-inline:0}
+.field input,.field textarea,.field select,.native-select{font-size:16px;min-width:0}
+.form-grid>*{min-width:0}.form-delivery-note a,.footer-grid a{overflow-wrap:anywhere}
+.form-delivery-note{font-size:13px}.consent{font-size:13px}.form-status{font-size:14px}
+.footer-grid .eyebrow{color:#9dafc4}.footer-bottom{color:#93a4b8}
+.legal a,.form-aside a,.service-row>span,.service-row svg{color:#4446c7}
+@media(min-width:821px) and (max-width:1100px){.form-layout{grid-template-columns:1fr}.form-aside{position:static}}
 
 @media(max-width:1100px){
   .header{gap:20px}.navigation{gap:18px}.header-cta{display:none}

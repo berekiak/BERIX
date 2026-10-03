@@ -124,7 +124,7 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
     html = html.replace("</head>", `${social}</head>`);
   }
 
-  // Replace the generated illustrations with licensed editorial photography.
+  // Keep accessible descriptions and intrinsic dimensions for the current art direction.
   const descriptions = {
     "/nexora-hero-city.webp": ["Portail numérique abstrait aux reflets indigo et cyan, univers visuel de Nexora Digital", 1600, 928],
     "/nexora-solutions-architecture.webp": ["Écosystème modulaire de solutions numériques et interfaces connectées", 1440, 1066],
@@ -147,13 +147,34 @@ for (const file of walk(publicDir.pathname).filter((path) => path.endsWith(".htm
   });
   html = html.replace(/<img\b[^>]*src="\/nexora-hero-city\.webp[^>]*>/g, (tag) => {
     const responsive = 'srcset="/nexora-portal-640.webp 640w, /nexora-portal-960.webp 960w, /nexora-portal-1440.webp 1440w, /nexora-portal-1920.webp 1920w" sizes="100vw"';
-    return tag.replace(/\sloading="[^"]*"/g, "").replace(/\sfetchPriority="[^"]*"/g, "")
+    return tag.replace(/\s(?:loading|fetchpriority|sizes)="[^"]*"/gi, "")
       .replace(/<img/, `<img ${responsive} loading="eager" fetchpriority="high"`);
   });
   html = html.replace(/<img\b[^>]*src="\/nexora-solutions-architecture\.webp[^>]*>/g, (tag) => {
     const responsive = 'srcset="/nexora-ecosystem-640.webp 640w, /nexora-ecosystem-960.webp 960w, /nexora-ecosystem-1440.webp 1440w" sizes="(max-width: 820px) 90vw, 52vw"';
-    return tag.replace(/<img/, `<img ${responsive}`);
+    return tag.replace(/\ssizes="[^"]*"/gi, "").replace(/<img/, `<img ${responsive}`);
   });
+
+  // The migrated framework snapshot streamed metadata into the body. Consolidate
+  // it in <head>, where crawlers and social parsers consistently find it.
+  const metadata = new Map();
+  html = html.replace(/<title\b[^>]*>[\s\S]*?<\/title>|<meta\b[^>]*>|<link\b[^>]*rel="(?:canonical|icon|shortcut icon|apple-touch-icon)"[^>]*>/gi, (tag) => {
+    let key;
+    if (/^<title/i.test(tag)) key = "title";
+    else if (/^<meta/i.test(tag)) key = tag.match(/(?:name|property|http-equiv)="([^"]+)"/i)?.[1]?.toLowerCase() || "charset";
+    else key = tag.match(/rel="([^"]+)"/i)?.[1]?.toLowerCase();
+    if (!metadata.has(key)) metadata.set(key, tag);
+    return "";
+  });
+  const pageTitle = metadata.get("title")?.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "Nexora Digital";
+  const pageDescription = metadata.get("description")?.match(/content="([^"]*)"/i)?.[1] || "Solutions numériques en RDC.";
+  const pageUrl = metadata.get("canonical")?.match(/href="([^"]*)"/i)?.[1] || canonicalOrigin;
+  for (const [key, value] of [["og:title", pageTitle], ["twitter:title", pageTitle], ["og:description", pageDescription], ["twitter:description", pageDescription], ["og:url", pageUrl]]) {
+    const attribute = key.startsWith("og:") ? "property" : "name";
+    metadata.set(key, `<meta ${attribute}="${key}" content="${value}"/>`);
+  }
+  if (!metadata.has("icon")) metadata.set("icon", '<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>');
+  html = html.replace("</head>", `${[...metadata.values()].join("")}</head>`);
   html = html.replace("</head>", '<link rel="stylesheet" href="/site.css"/></head>');
 
   if (!html.includes('src="/site.js"')) {

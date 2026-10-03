@@ -23,11 +23,18 @@
     const button = document.querySelector(".menu-toggle");
     const navigation = document.querySelector(".navigation");
     if (!button || !navigation) return;
+    const mobile = matchMedia("(max-width: 820px)");
+    navigation.id ||= "primary-navigation";
+    button.setAttribute("aria-controls", navigation.id);
+    const syncAccessibility = () => {
+      navigation.inert = mobile.matches && !navigation.classList.contains("open");
+    };
 
     const close = () => {
       navigation.classList.remove("open");
       button.setAttribute("aria-expanded", "false");
       button.setAttribute("aria-label", "Ouvrir le menu");
+      syncAccessibility();
     };
 
     button.addEventListener("click", () => {
@@ -35,12 +42,19 @@
       navigation.classList.toggle("open", open);
       button.setAttribute("aria-expanded", String(open));
       button.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+      syncAccessibility();
     });
     navigation.querySelectorAll("a").forEach((link) => link.addEventListener("click", close));
-    document.addEventListener("keydown", (event) => event.key === "Escape" && close());
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !navigation.classList.contains("open")) return;
+      close();
+      button.focus();
+    });
     document.addEventListener("click", (event) => {
       if (!navigation.contains(event.target) && !button.contains(event.target)) close();
     });
+    mobile.addEventListener("change", close);
+    syncAccessibility();
   }
 
   function setupExperience() {
@@ -54,6 +68,7 @@
     if (reduceMotion || !("IntersectionObserver" in window)) {
       reveals.forEach((element) => element.classList.add("is-visible"));
     } else {
+      document.body.classList.add("js-motion");
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
@@ -105,7 +120,9 @@
       body: JSON.stringify({ key: crypto.randomUUID(), website: "", ...payload }),
     });
     const result = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(result.error || "L’envoi n’a pas abouti. Veuillez réessayer.");
+    if (!response.ok || result.error || typeof result.reference !== "string" || !result.reference.trim()) {
+      throw new Error(typeof result.error === "string" ? result.error : "L’envoi n’a pas abouti. Veuillez réessayer ou utiliser WhatsApp.");
+    }
     return result;
   }
 
@@ -205,7 +222,9 @@
       if (step < 3) {
         step += 1;
         render();
-        form.scrollIntoView({ behavior: "smooth", block: "start" });
+        form.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+        form.querySelector("h2")?.setAttribute("tabindex", "-1");
+        form.querySelector("h2")?.focus({ preventScroll: true });
         return;
       }
 
@@ -226,7 +245,8 @@
           deadline: data.deadline,
           consent: data.consent === "on",
         });
-        form.innerHTML = `<div class="success-panel" role="status"><h2>Votre demande de devis a bien été envoyée.</h2><p>Merci pour votre confiance. L’équipe Nexora Digital examinera votre projet et vous répondra dans les meilleurs délais.</p><p><strong>Référence : ${escapeHtml(result.reference)}</strong></p></div>${whatsapp}`;
+        form.innerHTML = `<div class="success-panel" role="status" aria-live="polite" tabindex="-1"><h2>Votre demande de devis a bien été envoyée.</h2><p>Merci pour votre confiance. L’équipe Nexora Digital examinera votre projet et vous répondra dans les meilleurs délais.</p><p><strong>Référence : ${escapeHtml(result.reference)}</strong></p></div>${whatsapp}`;
+        form.querySelector(".success-panel")?.focus();
       } catch (error) {
         status(form, "error", error.message);
         button.disabled = false;
