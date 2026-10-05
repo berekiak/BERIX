@@ -31,7 +31,9 @@ Ces valeurs dépendent de l’environnement, de la charge et du cache. Elles ne 
 
 ## Messagerie
 
-Le formulaire publié a obtenu une acceptation HTTP 201 du transport Nexora, référence de contrôle NX-E3AC01F1. Cela confirme l’acceptation de l’envoi, mais ne vérifie pas la présence du message dans la boîte destinataire. Le compte Gmail connecté à l’assistant est distinct de la messagerie professionnelle. Les accusés automatiques au prospect nécessitent un expéditeur Resend vérifié ; aucun domaine vérifié n’est actuellement disponible dans le compte connecté.
+Le devis qualifié publié a obtenu une acceptation HTTP 201 du transport Nexora, référence de contrôle NX-3DB158F7, après vérification et adaptation de son contrat. Le destinataire de production a été vérifié dans la configuration : nexoradigitalrdc@gmail.com. Cela confirme l’acceptation de l’envoi, mais ne vérifie pas la présence du message dans la boîte destinataire. Le compte Gmail connecté à l’assistant est distinct de la messagerie professionnelle. `confirmationSent` vaut false pour ce contrôle. Les accusés automatiques au prospect nécessitent un expéditeur Resend vérifié ; aucun domaine vérifié n’est actuellement disponible dans le compte connecté.
+
+Robots, manifest, favicon, Open Graph et les quatre nouvelles captures de projet répondent HTTP 200. Le titre public de l’accueil comporte le nom officiel NEXORA DIGITAL. Le jeton public existant de vérification Search Console a été conservé. Aucune erreur JavaScript du site n’a été observée lors du contrôle du devis public ; le focus passe sur le titre de chaque étape.
 
 ## Figma et contrôles restant hors de cet environnement
 
