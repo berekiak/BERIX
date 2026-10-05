@@ -46,6 +46,8 @@ Pour activer l'envoi des demandes :
 3. vérifier le domaine d'expédition auprès du fournisseur d'e-mail ;
 4. envoyer une demande de test depuis la prévisualisation Vercel avant la promotion en production.
 
+Tant que le domaine Resend définitif n'est pas vérifié, le serveur peut utiliser le service d'e-mail Nexora déjà déployé comme transport de secours. Cette adresse n'est appelée que depuis l'API serveur.
+
 Sans Redis, l'API utilise une limitation en mémoire par instance, avec des adresses IP hachées par une clé aléatoire propre au processus. Cette protection permet le lancement ; Redis reste recommandé pour appliquer les quotas de façon uniforme sur toutes les instances.
 
 ## Structure
