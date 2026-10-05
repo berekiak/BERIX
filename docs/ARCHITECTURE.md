@@ -16,6 +16,8 @@ Validation client + serveur par Zod. Vérification de l’origine, limite de 20 
 
 Une notification est envoyée à Nexora via Resend lorsque la clé et l’expéditeur sont configurés. Sinon, le serveur transmet la demande au service de messagerie Nexora existant, à destination de nexoradigitalrdc@gmail.com. La reprise utilise ce même transport uniquement après un refus définitif de configuration ; un timeout ne déclenche pas un second transport. Tous les détails de qualification sont conservés dans le message, limité à 5 000 caractères par validation client et serveur. L’envoi au prospect est distinct ; son échec ne fait pas perdre la demande principale. Clés d’idempotence du fournisseur et reçus temporaires (24 h) empêchent les doublons lors d’une reprise réseau. Les secrets restent côté serveur.
 
+Le transport existant utilise six catégories historiques. `lib/legacy-payload.ts` les adapte aux neuf choix du nouveau devis. Le type exact reste dans le message de qualification ; les budgets et délais sont transmis avec leurs libellés complets. Les noms longs restent intégralement dans ce message et utilisent un nom d’affichage compatible avec la limite de 120 caractères du transport. Le reçu doit confirmer `emailSent: true` et fournir une référence avant l’affichage d’un succès. Le service existant garde également une copie de la demande dans son registre interne. Des tests vérifient son contrat publié (Sites, version 6).
+
 ## Évolution préparée
 
 - CMS : les contenus et types sont séparés du rendu ; `contentRepository` fournit un contrat initial. Brancher les pages et leurs métadonnées sur cet adaptateur lors de l’intégration d’un CMS, puis valider les données entrantes. Témoignages invisibles tant qu’ils ne sont pas approuvés.

@@ -3,7 +3,7 @@
 Contrôles effectués le 5 octobre 2026, sur un build de production local avec Chromium 153.
 
 - `npm run lint` : réussi.
-- `npm test` : 6 tests réussis (validation, consentement, tailles, URLs, échappement HTML et conservation des champs du devis).
+- `npm test` : 9 tests réussis (validation, consentement, tailles, URLs, échappement HTML, qualification complète, contrat du transport, noms longs et vérification des reçus).
 - `npm run build` : réussi ; vérification TypeScript incluse.
 - 23 pages contrôlées à 320, 360, 375, 390, 430, 768, 1024, 1280, 1440 et 1920 px : 230 affichages, sans débordement horizontal.
 - Captures visuelles sur ordinateur, tablette et mobile.
@@ -14,6 +14,8 @@ Contrôles effectués le 5 octobre 2026, sur un build de production local avec C
 - Devis : présélection du service, validations, aller-retour entre étapes, conservation des valeurs, payload et affichage du reçu. Le test de confirmation visuelle utilise une réponse API simulée.
 - API : origine incorrecte 403, format incorrect 415, payload invalide 400, dépassement de taille 413.
 - Adresses inexistantes : réponses HTTP 404, y compris les services et études de cas inconnus.
+
+Sur la version publique Vercel : les 23 pages du sitemap répondent HTTP 200, leurs titres et canonicals sont présents ; trois chemins inconnus répondent HTTP 404. Une première connexion automatisée a expiré sur une étude de cas ; les vérifications ciblées et le navigateur public ont ensuite confirmé sa disponibilité. La nouvelle galerie ITP et les liens Facebook/WhatsApp ont été vérifiés dans le navigateur public. Le formulaire de devis conserve son parcours en trois étapes.
 
 ## Lighthouse
 

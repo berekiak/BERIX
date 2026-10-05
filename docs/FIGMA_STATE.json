@@ -177,5 +177,117 @@
       ]
     }
   ],
-  "status": "Tokens, reusable components and editable wireframes. Raster visuals pending supported Figma upload."
+  "status": "Tokens, reusable components and editable wireframes. Raster visuals pending supported Figma upload.",
+  "finalTextFix": {
+    "mutatedNodeIds": [
+      "I6:97;2:134",
+      "I6:97;6:24",
+      "I6:97;6:25",
+      "I6:105;2:134",
+      "I6:105;6:24",
+      "I6:105;6:25",
+      "I6:113;2:134",
+      "I6:113;6:24",
+      "I6:113;6:25",
+      "I6:122;2:134",
+      "I6:122;6:24",
+      "I6:122;6:25",
+      "I6:130;2:134",
+      "I6:130;6:24",
+      "I6:130;6:25",
+      "I6:138;2:134",
+      "I6:138;6:24",
+      "I6:138;6:25",
+      "I6:147;2:134",
+      "I6:147;6:24",
+      "I6:147;6:25",
+      "I6:155;2:134",
+      "I6:155;6:24",
+      "I6:155;6:25",
+      "I6:199;2:138",
+      "I6:199;6:43",
+      "I6:207;2:138",
+      "I6:207;6:43",
+      "I6:334;2:134",
+      "I6:334;6:24",
+      "I6:334;6:25",
+      "I6:343;2:134",
+      "I6:343;6:24",
+      "I6:343;6:25",
+      "I6:352;2:134",
+      "I6:352;6:24",
+      "I6:352;6:25",
+      "I6:361;2:134",
+      "I6:361;6:24",
+      "I6:361;6:25",
+      "I6:370;2:134",
+      "I6:370;6:24",
+      "I6:370;6:25",
+      "I6:379;2:134",
+      "I6:379;6:24",
+      "I6:379;6:25",
+      "I6:388;2:134",
+      "I6:388;6:24",
+      "I6:388;6:25",
+      "I6:397;2:134",
+      "I6:397;6:24",
+      "I6:397;6:25",
+      "I6:441;2:138",
+      "I6:441;6:43",
+      "I6:449;2:138",
+      "I6:449;6:43",
+      "6:76",
+      "6:75",
+      "6:86",
+      "6:78",
+      "6:315"
+    ],
+    "evidence": [
+      {
+        "id": "2:141",
+        "width": 1440,
+        "height": 11604,
+        "services": [
+          "Sites Web",
+          "Applications Web",
+          "Applications Mobiles",
+          "Solutions de Gestion",
+          "Automatisation",
+          "E-commerce",
+          "UI/UX Design",
+          "Solutions sur Mesure"
+        ]
+      },
+      {
+        "id": "2:163",
+        "width": 390,
+        "height": 13544,
+        "services": [
+          "Sites Web",
+          "Applications Web",
+          "Applications Mobiles",
+          "Solutions de Gestion",
+          "Automatisation",
+          "E-commerce",
+          "UI/UX Design",
+          "Solutions sur Mesure"
+        ]
+      }
+    ],
+    "heroes": [
+      {
+        "id": "6:78",
+        "width": 720,
+        "height": 256,
+        "fontSize": 74
+      },
+      {
+        "id": "6:315",
+        "width": 350,
+        "height": 132,
+        "fontSize": 38
+      }
+    ],
+    "imageStatus": "Import bloqué HTTP 405; wireframes éditables."
+  }
 }

@@ -5,7 +5,7 @@ import { CircleCheck, LockKeyhole } from 'lucide-react';
 import { Button } from '@/components/ui';
 import { leadSchema, projectTypes, type Lead } from '@/lib/lead-schema';
 import { site } from '@/lib/config';
-const typeLabels:Record<string,string>={'sites-web':'Site Web','applications-web':'Application Web','applications-mobiles':'Application Mobile','solutions-gestion':'Outil de Gestion','automatisation':'Automatisation','e-commerce':'E-commerce','design-ui-ux':'UI/UX Design','sur-mesure':'Solution sur mesure',autre:'Autre'};
+import { projectTypeLabels as typeLabels } from '@/lib/project-labels';
 type FormValues=Omit<Lead,'consent'|'requestId'|'startedAt'>&{consent:boolean};
 const initialValues=(kind:'contact'|'devis',initialService=''):FormValues=>({kind,firstName:'',lastName:'',company:'',email:'',phone:'',country:'RDC',projectType:projectTypes.includes(initialService as typeof projectTypes[number])?initialService as typeof projectTypes[number]:'',objective:'',features:'',budget:'',deadline:'',projectStage:'',existingUrl:'',subject:'',message:'',consent:false,website:''});
 function Field({name,label,optional,error,wide,children}:{name:string;label:string;optional?:boolean;error?:string;wide?:boolean;children:ReactNode}){return <div className={`field ${wide?'field-wide':''}`}><label htmlFor={name}>{label}{optional?<span className="optional">facultatif</span>:<span aria-hidden="true"> *</span>}</label>{children}{error&&<p className="field-error" id={`${name}-error`}>{error}</p>}</div>;}
