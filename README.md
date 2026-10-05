@@ -1,76 +1,74 @@
-# Nexora Digital
+# NEXORA DIGITAL
 
-Site officiel de **Nexora Digital**, agence digitale basée à Kinshasa et spécialisée dans la création de sites web, le développement d’applications, les outils de gestion, le design UI/UX et la transformation numérique en République démocratique du Congo.
+Site officiel de NEXORA DIGITAL, conçu comme une plateforme commerciale pour présenter les services, démontrer les réalisations et qualifier les demandes de projet.
 
-## Fonctionnalités
+## Stack
 
-- 16 pages publiques responsives ;
-- présentation des expertises et du processus de collaboration ;
-- formulaire de contact et demande de devis en plusieurs étapes ;
-- transmission sécurisée des demandes par e-mail ;
-- bouton WhatsApp indépendant ;
-- métadonnées SEO, Open Graph et Twitter/X Cards ;
-- sitemap XML, robots.txt, données structurées Schema.org et page 404 ;
-- navigation accessible au clavier et prise en charge de `prefers-reduced-motion`.
+- Next.js 16 et React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- Zod pour la validation serveur
+- Resend pour les e-mails
+- Redis compatible Upstash pour le rate limiting et l'idempotence
 
-## Développement local
+## Installation
 
-Prérequis : Node.js 20 ou supérieur.
-
-```bash
-npm run check
-npm run build
-npm test
-```
-
-Le résultat de production est créé dans `dist/`.
-
-`npm test` vérifie sans envoi réel les confirmations, les erreurs réseau/serveur, les réponses malformées, la validation des demandes et le contenu des e-mails.
-
-Pour contrôler un déploiement public :
+Prérequis : Node.js 24 et npm.
 
 ```bash
-node scripts/verify-live.mjs https://nexora-digital-rdc.vercel.app
+npm ci
+cp .env.example .env.local
+npm run dev
 ```
 
-Le script ne transmet aucune demande par défaut. L’option explicite `--send-tests` envoie deux messages clairement identifiés comme tests à l’adresse officielle. Une préversion protégée nécessite un fichier de cookies autorisé en troisième argument. Ne jamais versionner ce fichier.
+Le site est alors disponible sur `http://localhost:3000`.
 
-Le bilan de la refonte et ses limites de vérification sont consignés dans `docs/verification-spectrum-2026-10-03.md`.
+## Commandes
 
-Le build ajoute une version basée sur le contenu aux URLs des styles, scripts, images et polices. Toute modification d'un asset produit une nouvelle URL, pour que les visiteurs chargent la dernière identité visuelle.
-
-## Variables d’environnement
-
-Copier `.env.example` vers `.env.local` pour le développement local. La clé Resend doit être configurée exclusivement comme variable serveur :
-
-```text
-RESEND_API_KEY=
-NEXORA_CONTACT_EMAIL=nexoradigitalrdc@gmail.com
-NEXORA_EMAIL_FROM=Nexora Digital <onboarding@resend.dev>
+```bash
+npm run dev        # serveur de développement
+npm run lint       # analyse statique
+npm run typecheck  # vérification TypeScript
+npm test           # tests de sécurité et de validation
+npm run build      # build de production
+npm run start      # serveur de production local
 ```
 
-Ne jamais exposer `RESEND_API_KEY` dans le navigateur, dans une variable publique ou dans Git.
+## Configuration
+
+Les variables publiques et secrètes attendues sont documentées dans `.env.example`. Les clés d'API doivent rester dans les variables d'environnement du serveur et ne doivent jamais être ajoutées au dépôt.
+
+Pour activer l'envoi des demandes :
+
+1. configurer `RESEND_API_KEY`, `NEXORA_CONTACT_EMAIL` et `NEXORA_EMAIL_FROM` ;
+2. configurer `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` et `RATE_LIMIT_SALT` ;
+3. vérifier le domaine d'expédition auprès du fournisseur d'e-mail ;
+4. envoyer une demande de test depuis la prévisualisation Vercel avant la promotion en production.
+
+En production, l'API refuse volontairement les demandes si le stockage de limitation n'est pas configuré. Cela évite d'exposer un formulaire public sans protection anti-abus.
+
+## Structure
+
+- `app/` : routes, SEO, API et pages d'erreur
+- `components/` : composants partagés et navigation
+- `components/ui/` : primitives du design system
+- `sections/` : composition des pages
+- `data/` : contenu éditorial prêt pour une migration CMS
+- `lib/` : configuration, validation, e-mails, analytics et sécurité
+- `public/` : logo, polices et visuels optimisés
+- `docs/` : design system et architecture
+- `tests/` : tests serveur ciblés
 
 ## Déploiement Vercel
 
-1. Importer ce dépôt dans Vercel.
-2. Conserver la commande `npm run build && npm run check && npm test` et le dossier de sortie `dist` : chaque publication est bloquée si un contrôle échoue.
-3. Ajouter `RESEND_API_KEY` aux variables d’environnement de production.
-4. Déployer, puis vérifier `/contact`, `/devis`, `/robots.txt` et `/sitemap.xml`.
+Le projet est compatible avec l'intégration GitHub de Vercel. Le build utilise `npm run build`. Après chaque déploiement, vérifier l'URL de prévisualisation, les formulaires, le sitemap, les en-têtes de sécurité et les principales tailles d'écran avant la promotion en production.
 
-Tant que la variable Resend n’est pas encore configurée sur Vercel, la fonction serveur relaie les demandes vers le backend sécurisé déjà actif afin d’éviter toute interruption de service.
+## Contenu et CMS
 
-## Sécurité
+Les services, projets, FAQ et futurs témoignages sont centralisés dans `data/`. Cette séparation permet d'ajouter ultérieurement Sanity, Contentful, Strapi ou un autre CMS sans réécrire les pages.
 
-- aucune clé API n’est incluse dans le dépôt ;
-- validation serveur de toutes les demandes ;
-- échappement des données intégrées aux e-mails ;
-- champ anti-robot et identifiant d’idempotence ;
-- en-têtes de sécurité configurés dans `vercel.json`.
+## Ressources de marque
 
-## Coordonnées officielles
+Le logo officiel fourni par NEXORA DIGITAL pilote les couleurs et la direction artistique. Les visuels de services ont été créés spécifiquement pour ce projet, puis convertis en WebP pour le web. Aucun témoignage ni résultat chiffré fictif n'est publié.
 
-- E-mail : [nexoradigitalrdc@gmail.com](mailto:nexoradigitalrdc@gmail.com)
-- WhatsApp : [+243 85 81 81 330](https://wa.me/243858181330)
-
-© Nexora Digital.

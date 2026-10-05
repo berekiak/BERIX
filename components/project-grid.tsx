@@ -1,0 +1,6 @@
+'use client';
+import { useState } from 'react';
+import { ProjectCard } from './project-card';
+import type { Project } from '@/types/content';
+const filters=['Tous','Sites Web','Applications Web','Applications Mobiles','Plateformes','Solutions de Gestion','E-commerce'];
+export function ProjectGrid({projects}:{projects:Project[]}){const [active,setActive]=useState('Tous');const visible=projects.filter(p=>active==='Tous'||p.category===active);return <><div className="project-filters" role="group" aria-label="Filtrer les réalisations">{filters.map(f=><button type="button" key={f} onClick={()=>setActive(f)} aria-pressed={active===f} className={active===f?'filter-active':''}>{f}</button>)}</div><p className="filter-result" aria-live="polite">{visible.length} projet{visible.length>1?'s':''}</p>{visible.length?<div className="projects-grid">{visible.map(p=><ProjectCard key={p.slug} project={p}/>)}</div>:<div className="empty-state"><h2>Les prochaines réalisations arrivent ici.</h2><p>Découvrez nos autres projets ou parlons de la solution que vous souhaitez construire.</p><button type="button" className="button button-secondary" onClick={()=>setActive('Tous')}>Voir tous les projets</button></div>}</>;}

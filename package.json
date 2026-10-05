@@ -1,16 +1,41 @@
 {
-  "name": "nexora-digital-rdc",
-  "version": "1.0.0",
+  "name": "nexora-digital-v2",
+  "version": "2.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "prepare:static": "node scripts/prepare-static.mjs",
-    "build": "npm run prepare:static && node scripts/build.mjs",
-    "check": "node scripts/check.mjs",
-    "test": "node scripts/test.mjs",
-    "dev": "node scripts/serve.mjs"
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^0.577.0",
+    "next": "16.3.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "agent-browser": "^0.38.2",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "16.3.8",
+    "lighthouse": "^13.5.0",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
   },
   "engines": {
-    "node": ">=20"
-  }
+    "node": ">=22"
+  },
+  "type": "module"
 }

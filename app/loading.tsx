@@ -1,0 +1,1 @@
+export default function Loading(){return <div className="container" role="status" aria-label="Chargement de la page"><div className="loading-skeleton"/><span className="sr-only">Chargement…</span></div>;}

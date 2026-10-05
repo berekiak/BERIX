@@ -1,0 +1,2 @@
+import { ButtonLink } from '@/components/ui';
+export default function NotFound(){return <section className="not-found"><div className="container"><p className="error-number" aria-hidden="true">404</p><h1>Cette page a changé de cap.</h1><p>Le lien demandé n’est pas disponible. Retrouvez nos services ou revenez à l’accueil.</p><div className="error-actions"><ButtonLink href="/">Retour à l’accueil</ButtonLink><ButtonLink href="/services" variant="secondary">Découvrir nos services</ButtonLink></div></div></section>;}

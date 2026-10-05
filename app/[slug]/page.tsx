@@ -1,0 +1,21 @@
+import { notFound } from 'next/navigation';
+import { ServicesPage, SolutionsPage, ProjectsPage, CaseStudiesPage, AboutPage, ProcessPage, ContactPage, QuotePage, FAQPage, LegalPage } from '@/sections/pages';
+import { JsonLd, pageMetadata } from '@/lib/seo';
+import { site } from '@/lib/config';
+import { faqs } from '@/data/content';
+const pages:Record<string,{title:string;description:string;label:string}>={
+  services:{title:'Services digitaux sur mesure à Kinshasa',description:'Sites web, applications, outils de gestion, e-commerce, automatisation et UI/UX. Explorez les services de Nexora Digital en RDC.',label:'Services'},
+  solutions:{title:'Solutions numériques pour les entreprises en RDC',description:'Digitalisation, lancement de produit, automatisation et gestion : trouvez une solution adaptée aux défis de votre entreprise.',label:'Solutions'},
+  realisations:{title:'Réalisations et projets de Nexora Digital',description:'Découvrez les projets web et les produits en développement de Nexora Digital, leurs objectifs et leurs solutions.',label:'Réalisations'},
+  'etudes-de-cas':{title:'Études de cas — du besoin à la solution',description:'Découvrez le contexte, les choix de design et la solution derrière les projets de Nexora Digital.',label:'Études de cas'},
+  'a-propos':{title:'À propos de Nexora Digital, agence digitale à Kinshasa',description:'Notre mission, notre approche et Berekia Kalonji, fondateur de Nexora Digital. Des solutions professionnelles ancrées en RDC.',label:'À propos'},
+  processus:{title:'Notre processus de conception et développement',description:'Découverte, stratégie, design, développement, tests, déploiement et accompagnement : une méthode claire pour votre projet digital.',label:'Processus'},
+  contact:{title:'Contacter Nexora Digital à Kinshasa',description:'Contactez Nexora Digital par e-mail, WhatsApp ou formulaire pour votre projet de site, application ou solution sur mesure.',label:'Contact'},
+  devis:{title:'Demander un devis pour votre projet digital',description:'Présentez votre besoin de site web, application ou outil de gestion. Un formulaire en trois étapes pour lancer la discussion.',label:'Demande de devis'},
+  faq:{title:'Questions fréquentes sur nos projets digitaux',description:'Budget, délais, maintenance, contenu et collaboration : les réponses utiles avant de lancer votre projet avec Nexora Digital.',label:'FAQ'},
+  'mentions-legales':{title:'Mentions légales',description:'Informations sur l’éditeur, les contenus et les demandes de devis du site Nexora Digital.',label:'Mentions légales'},
+  confidentialite:{title:'Politique de confidentialité',description:'Comment Nexora Digital utilise les informations transmises via les formulaires de contact et de devis.',label:'Confidentialité'}
+};
+export function generateStaticParams(){return Object.keys(pages).map(slug=>({slug}));}
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=pages[slug];return p?pageMetadata(p.title,p.description,'/'+slug):{title:'Page introuvable',robots:{index:false}};}
+export default async function Page({params,searchParams}:{params:Promise<{slug:string}>;searchParams:Promise<{service?:string}>}){const {slug}=await params;if(!pages[slug])notFound();let content;switch(slug){case'services':content=<ServicesPage/>;break;case'solutions':content=<SolutionsPage/>;break;case'realisations':content=<ProjectsPage/>;break;case'etudes-de-cas':content=<CaseStudiesPage/>;break;case'a-propos':content=<AboutPage/>;break;case'processus':content=<ProcessPage/>;break;case'contact':content=<ContactPage/>;break;case'devis':content=<QuotePage initialService={(await searchParams).service||''}/>;break;case'faq':content=<FAQPage/>;break;case'mentions-legales':content=<LegalPage/>;break;case'confidentialite':content=<LegalPage privacy/>;break;default:notFound();}return <>{content}<JsonLd data={{'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Accueil',item:site.url},{'@type':'ListItem',position:2,name:pages[slug].label,item:site.url+'/'+slug}]}}/>{slug==='faq'&&<JsonLd data={{'@context':'https://schema.org','@type':'FAQPage',mainEntity:faqs.map(f=>({'@type':'Question',name:f.question,acceptedAnswer:{'@type':'Answer',text:f.answer}}))}}/>}</>;}
