@@ -1,0 +1,181 @@
+{
+  "fileKey": "F3mAQLAymW1bILx9B6vVqS",
+  "url": "https://www.figma.com/design/F3mAQLAymW1bILx9B6vVqS",
+  "pageId": "0:1",
+  "desktopId": "2:141",
+  "mobileId": "2:163",
+  "components": {
+    "primary": "2:113",
+    "secondary": "2:117",
+    "badge": "2:121",
+    "field": "2:125",
+    "accordion": "2:129",
+    "service": "2:133",
+    "project": "2:137"
+  },
+  "imageImport": {
+    "status": "blocked",
+    "httpStatus": 405,
+    "slots": [
+      {
+        "id": "6:23",
+        "path": "public/images/sites-web.webp",
+        "name": "Visuel du service"
+      },
+      {
+        "id": "6:41",
+        "path": "public/images/projet-itp.webp",
+        "name": "Capture réelle du projet"
+      },
+      {
+        "id": "6:86",
+        "path": "public/images/sur-mesure.webp",
+        "name": "De l’idée à l’impact"
+      },
+      {
+        "id": "I6:97;6:23",
+        "path": "public/images/sites-web.webp",
+        "name": "Sites Web"
+      },
+      {
+        "id": "I6:105;6:23",
+        "path": "public/images/applications-web.webp",
+        "name": "Applications Web"
+      },
+      {
+        "id": "I6:113;6:23",
+        "path": "public/images/applications-mobiles.webp",
+        "name": "Applications Mobiles"
+      },
+      {
+        "id": "I6:122;6:23",
+        "path": "public/images/solutions-gestion.webp",
+        "name": "Solutions de Gestion"
+      },
+      {
+        "id": "I6:130;6:23",
+        "path": "public/images/automatisation.webp",
+        "name": "Automatisation"
+      },
+      {
+        "id": "I6:138;6:23",
+        "path": "public/images/e-commerce.webp",
+        "name": "E-commerce"
+      },
+      {
+        "id": "I6:147;6:23",
+        "path": "public/images/design-ui-ux.webp",
+        "name": "UI/UX Design"
+      },
+      {
+        "id": "I6:155;6:23",
+        "path": "public/images/sur-mesure.webp",
+        "name": "Solutions sur Mesure"
+      },
+      {
+        "id": "I6:199;6:41",
+        "path": "public/images/projet-itp.webp",
+        "name": "ITP Ngaliema"
+      },
+      {
+        "id": "I6:207;6:41",
+        "path": "public/images/projet-portfolio.webp",
+        "name": "Portfolio Berekia Kalonji"
+      },
+      {
+        "id": "6:219",
+        "path": "public/images/applications-mobiles.webp",
+        "name": "VISUEL CONCEPTUEL"
+      },
+      {
+        "id": "6:323",
+        "path": "public/images/sur-mesure.webp",
+        "name": "De l’idée à l’impact"
+      },
+      {
+        "id": "I6:334;6:23",
+        "path": "public/images/sites-web.webp",
+        "name": "Sites Web"
+      },
+      {
+        "id": "I6:343;6:23",
+        "path": "public/images/applications-web.webp",
+        "name": "Applications Web"
+      },
+      {
+        "id": "I6:352;6:23",
+        "path": "public/images/applications-mobiles.webp",
+        "name": "Applications Mobiles"
+      },
+      {
+        "id": "I6:361;6:23",
+        "path": "public/images/solutions-gestion.webp",
+        "name": "Solutions de Gestion"
+      },
+      {
+        "id": "I6:370;6:23",
+        "path": "public/images/automatisation.webp",
+        "name": "Automatisation"
+      },
+      {
+        "id": "I6:379;6:23",
+        "path": "public/images/e-commerce.webp",
+        "name": "E-commerce"
+      },
+      {
+        "id": "I6:388;6:23",
+        "path": "public/images/design-ui-ux.webp",
+        "name": "UI/UX Design"
+      },
+      {
+        "id": "I6:397;6:23",
+        "path": "public/images/sur-mesure.webp",
+        "name": "Solutions sur Mesure"
+      },
+      {
+        "id": "I6:441;6:41",
+        "path": "public/images/projet-itp.webp",
+        "name": "ITP Ngaliema"
+      },
+      {
+        "id": "I6:449;6:41",
+        "path": "public/images/projet-portfolio.webp",
+        "name": "Portfolio Berekia Kalonji"
+      },
+      {
+        "id": "6:461",
+        "path": "public/images/applications-mobiles.webp",
+        "name": "VISUEL CONCEPTUEL"
+      }
+    ]
+  },
+  "lastBounds": [
+    {
+      "id": "2:141",
+      "width": 1440,
+      "height": 11604,
+      "heroTitle": [
+        {
+          "id": "6:78",
+          "width": 650,
+          "height": 594,
+          "fontSize": 86
+        }
+      ]
+    },
+    {
+      "id": "2:163",
+      "width": 390,
+      "height": 13716,
+      "heroTitle": [
+        {
+          "id": "6:315",
+          "width": 350,
+          "height": 304,
+          "fontSize": 44
+        }
+      ]
+    }
+  ],
+  "status": "Tokens, reusable components and editable wireframes. Raster visuals pending supported Figma upload."
+}

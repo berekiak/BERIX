@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { projectBrief } from './project-brief.ts';
+z.config({jitless:true});
 export const projectTypes=['sites-web','applications-web','applications-mobiles','solutions-gestion','automatisation','e-commerce','design-ui-ux','sur-mesure','autre'] as const;
 const optionalText=(max:number)=>z.string().trim().max(max,'Ce texte est trop long.').default('');
 export const leadSchema=z.object({
@@ -25,6 +27,7 @@ export const leadSchema=z.object({
 }).strict().superRefine((v,ctx)=>{
   if(v.kind==='devis'&&!v.projectType)ctx.addIssue({code:'custom',path:['projectType'],message:'Choisissez votre type de projet.'});
   if(v.kind==='contact'&&v.subject.length<3)ctx.addIssue({code:'custom',path:['subject'],message:'Indiquez l’objet de votre message.'});
+  if(projectBrief(v).length>5000)ctx.addIssue({code:'custom',path:[v.features?'features':'objective'],message:'Votre description complète est trop longue. Raccourcissez l’objectif, les fonctionnalités ou le complément pour pouvoir envoyer votre demande.'});
 });
 export type Lead=z.infer<typeof leadSchema>;
 export function escapeHtml(value:string){return value.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));}

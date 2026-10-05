@@ -1,9 +1,10 @@
-import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { ServicesPage, SolutionsPage, ProjectsPage, CaseStudiesPage, AboutPage, ProcessPage, ContactPage, QuotePage, FAQPage, LegalPage } from '@/sections/pages';
 import { JsonLd, pageMetadata } from '@/lib/seo';
 import { site } from '@/lib/config';
 import { faqs } from '@/data/content';
-const pages:Record<string,{title:string;description:string;label:string}>={
+
+export const staticPages={
   services:{title:'Services digitaux sur mesure à Kinshasa',description:'Sites web, applications, outils de gestion, e-commerce, automatisation et UI/UX. Explorez les services de Nexora Digital en RDC.',label:'Services'},
   solutions:{title:'Solutions numériques pour les entreprises en RDC',description:'Digitalisation, lancement de produit, automatisation et gestion : trouvez une solution adaptée aux défis de votre entreprise.',label:'Solutions'},
   realisations:{title:'Réalisations et projets de Nexora Digital',description:'Découvrez les projets web et les produits en développement de Nexora Digital, leurs objectifs et leurs solutions.',label:'Réalisations'},
@@ -15,8 +16,10 @@ const pages:Record<string,{title:string;description:string;label:string}>={
   faq:{title:'Questions fréquentes sur nos projets digitaux',description:'Budget, délais, maintenance, contenu et collaboration : les réponses utiles avant de lancer votre projet avec Nexora Digital.',label:'FAQ'},
   'mentions-legales':{title:'Mentions légales',description:'Informations sur l’éditeur, les contenus et les demandes de devis du site Nexora Digital.',label:'Mentions légales'},
   confidentialite:{title:'Politique de confidentialité',description:'Comment Nexora Digital utilise les informations transmises via les formulaires de contact et de devis.',label:'Confidentialité'}
-};
-export const dynamicParams=false;
-export function generateStaticParams(){return Object.keys(pages).map(slug=>({slug}));}
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=pages[slug];return p?pageMetadata(p.title,p.description,'/'+slug):{title:'Page introuvable',robots:{index:false}};}
-export default async function Page({params,searchParams}:{params:Promise<{slug:string}>;searchParams:Promise<{service?:string}>}){const {slug}=await params;if(!pages[slug])notFound();let content;switch(slug){case'services':content=<ServicesPage/>;break;case'solutions':content=<SolutionsPage/>;break;case'realisations':content=<ProjectsPage/>;break;case'etudes-de-cas':content=<CaseStudiesPage/>;break;case'a-propos':content=<AboutPage/>;break;case'processus':content=<ProcessPage/>;break;case'contact':content=<ContactPage/>;break;case'devis':content=<QuotePage initialService={(await searchParams).service||''}/>;break;case'faq':content=<FAQPage/>;break;case'mentions-legales':content=<LegalPage/>;break;case'confidentialite':content=<LegalPage privacy/>;break;default:notFound();}return <>{content}<JsonLd data={{'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Accueil',item:site.url},{'@type':'ListItem',position:2,name:pages[slug].label,item:site.url+'/'+slug}]}}/>{slug==='faq'&&<JsonLd data={{'@context':'https://schema.org','@type':'FAQPage',mainEntity:faqs.map(f=>({'@type':'Question',name:f.question,acceptedAnswer:{'@type':'Answer',text:f.answer}}))}}/>}</>;}
+} as const;
+export type StaticSlug=keyof typeof staticPages;
+export function metadataFor(slug:StaticSlug):Metadata{const page=staticPages[slug];return pageMetadata(page.title,page.description,'/'+slug);}
+export function StaticPage({slug,initialService=''}:{slug:StaticSlug;initialService?:string}){
+  const content={services:<ServicesPage/>,solutions:<SolutionsPage/>,realisations:<ProjectsPage/>,'etudes-de-cas':<CaseStudiesPage/>,'a-propos':<AboutPage/>,processus:<ProcessPage/>,contact:<ContactPage/>,devis:<QuotePage initialService={initialService}/>,faq:<FAQPage/>,'mentions-legales':<LegalPage/>,confidentialite:<LegalPage privacy/>}[slug];
+  return <>{content}<JsonLd data={{'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Accueil',item:site.url},{'@type':'ListItem',position:2,name:staticPages[slug].label,item:site.url+'/'+slug}]}}/>{slug==='faq'&&<JsonLd data={{'@context':'https://schema.org','@type':'FAQPage',mainEntity:faqs.map(f=>({'@type':'Question',name:f.question,acceptedAnswer:{'@type':'Answer',text:f.answer}}))}}/>}</>;
+}

@@ -7,7 +7,9 @@ import { site } from '@/lib/config';
 export const runtime='nodejs';export const maxDuration=45;
 const json=(data:Record<string,unknown>,status=200,headers?:Record<string,string>)=>NextResponse.json(data,{status,headers:{'Cache-Control':'no-store',...headers}});
 export async function POST(request:NextRequest){
-  const origin=request.headers.get('origin');if(!origin||![new URL(site.url).origin,request.nextUrl.origin].includes(origin))return json({error:'Cette demande ne provient pas du site.'},403);
+  const origin=request.headers.get('origin');let sameHost=false;
+  try{if(origin){const url=new URL(origin);sameHost=['http:','https:'].includes(url.protocol)&&url.host===request.headers.get('host');}}catch{/* Invalid origins are refused. */}
+  if(!origin||(!sameHost&&![new URL(site.url).origin,request.nextUrl.origin].includes(origin)))return json({error:'Cette demande ne provient pas du site.'},403);
   if(!request.headers.get('content-type')?.includes('application/json'))return json({error:'Format de demande non pris en charge.'},415);
   let key='';let locked=false;
   try{
