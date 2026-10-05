@@ -1,5 +1,5 @@
 export type Service = {
-  slug: string; title: string; short: string; subtitle: string; description: string;
+  slug: string; title: string; short: string; subtitle: string; description: string; seoDescription: string;
   problem: string; benefits: string[]; features: string[]; technologies: string[];
   image: string; imageAlt: string; number: string;
 };

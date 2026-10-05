@@ -1,0 +1,169 @@
+{
+  "siteUrl": "https://nexora-digital-rdc.vercel.app/",
+  "checkedAt": "2026-10-05T23:43:42Z",
+  "indexed": 7,
+  "awaitingIndexing": 16,
+  "inspections": [
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/confidentialite",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:43:41.934695+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/mentions-legales",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-10-02T11:56:01+00:00",
+      "inspectedAt": "2026-10-05T23:43:35.354153+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/faq",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-10-02T18:15:25+00:00",
+      "inspectedAt": "2026-10-05T23:43:28.81844+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/devis",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:43:22.248944+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/contact",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:43:15.730809+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/processus",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:43:09.179613+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/a-propos",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-10-04T17:20:03+00:00",
+      "inspectedAt": "2026-10-05T23:43:02.490779+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/etudes-de-cas/congo-cash",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:42:55.94774+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/etudes-de-cas/portfolio-berekia-kalonji",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:42:49.297346+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/etudes-de-cas/itp-ngaliema",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:42:42.783129+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/etudes-de-cas",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:42:36.275193+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/realisations",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:42:29.730281+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/solutions",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:42:23.130597+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/services/sur-mesure",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-10-02T21:59:23+00:00",
+      "inspectedAt": "2026-10-05T23:42:16.570287+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/services/design-ui-ux",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-10-02T14:45:31+00:00",
+      "inspectedAt": "2026-10-05T23:42:09.920802+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/services/e-commerce",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:42:03.292059+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/services/automatisation",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:41:56.694193+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/services/solutions-gestion",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:41:50.145431+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/services/applications-mobiles",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:41:43.643569+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/services/applications-web",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:41:37.046135+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/services/sites-web",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-10-02T11:58:31+00:00",
+      "inspectedAt": "2026-10-05T23:41:30.42855+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/services",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": null,
+      "inspectedAt": "2026-10-05T23:41:23.928338+00:00"
+    },
+    {
+      "url": "https://nexora-digital-rdc.vercel.app/",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-10-02T09:08:24+00:00",
+      "inspectedAt": "2026-10-05T23:39:53.435471+00:00"
+    }
+  ]
+}

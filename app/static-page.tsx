@@ -6,14 +6,14 @@ import { faqs } from '@/data/content';
 
 export const staticPages={
   services:{title:'Services digitaux sur mesure à Kinshasa',description:'Sites web, applications, outils de gestion, e-commerce, automatisation et UI/UX. Explorez les services de Nexora Digital en RDC.',label:'Services'},
-  solutions:{title:'Solutions numériques pour les entreprises en RDC',description:'Digitalisation, lancement de produit, automatisation et gestion : trouvez une solution adaptée aux défis de votre entreprise.',label:'Solutions'},
+  solutions:{title:'Solutions digitales en RDC',description:'Digitalisation, lancement de produit, automatisation et gestion : trouvez une solution adaptée aux défis de votre entreprise.',label:'Solutions'},
   realisations:{title:'Réalisations et projets de Nexora Digital',description:'Découvrez les projets web et les produits en développement de Nexora Digital, leurs objectifs et leurs solutions.',label:'Réalisations'},
   'etudes-de-cas':{title:'Études de cas — du besoin à la solution',description:'Découvrez le contexte, les choix de design et la solution derrière les projets de Nexora Digital.',label:'Études de cas'},
-  'a-propos':{title:'À propos de Nexora Digital, agence digitale à Kinshasa',description:'Notre mission, notre approche et Berekia Kalonji, fondateur de Nexora Digital. Des solutions professionnelles ancrées en RDC.',label:'À propos'},
-  processus:{title:'Notre processus de conception et développement',description:'Découverte, stratégie, design, développement, tests, déploiement et accompagnement : une méthode claire pour votre projet digital.',label:'Processus'},
+  'a-propos':{title:'À propos — Agence digitale à Kinshasa',description:'Notre mission, notre approche et Berekia Kalonji, fondateur de Nexora Digital. Des solutions professionnelles ancrées en RDC.',label:'À propos'},
+  processus:{title:'Notre méthode de développement sur mesure',description:'Découverte, stratégie, design, développement, tests, déploiement et accompagnement : une méthode claire pour votre projet digital.',label:'Processus'},
   contact:{title:'Contacter Nexora Digital à Kinshasa',description:'Contactez Nexora Digital par e-mail, WhatsApp ou formulaire pour votre projet de site, application ou solution sur mesure.',label:'Contact'},
   devis:{title:'Demander un devis pour votre projet digital',description:'Présentez votre besoin de site web, application ou outil de gestion. Un formulaire en trois étapes pour lancer la discussion.',label:'Demande de devis'},
-  faq:{title:'Questions fréquentes sur nos projets digitaux',description:'Budget, délais, maintenance, contenu et collaboration : les réponses utiles avant de lancer votre projet avec Nexora Digital.',label:'FAQ'},
+  faq:{title:'FAQ — Sites web, applications et devis',description:'Budget, délais, maintenance, contenu et collaboration : les réponses utiles avant de lancer votre projet avec Nexora Digital.',label:'FAQ'},
   'mentions-legales':{title:'Mentions légales',description:'Informations sur l’éditeur, les contenus et les demandes de devis du site Nexora Digital.',label:'Mentions légales'},
   confidentialite:{title:'Politique de confidentialité',description:'Comment Nexora Digital utilise les informations transmises via les formulaires de contact et de devis.',label:'Confidentialité'}
 } as const;

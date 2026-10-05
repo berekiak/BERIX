@@ -15,7 +15,8 @@ const nextConfig: NextConfig = {
   async redirects() {return [
     {source:"/services/sites-internet",destination:"/services/sites-web",permanent:true},
     {source:"/services/applications",destination:"/services/applications-web",permanent:true},
-    {source:"/services/outils-de-gestion",destination:"/services/solutions-gestion",permanent:true}
+    {source:"/services/outils-de-gestion",destination:"/services/solutions-gestion",permanent:true},
+    {source:"/services/transformation-numerique",destination:"/solutions",permanent:true}
   ];}
 };
 export default nextConfig;
