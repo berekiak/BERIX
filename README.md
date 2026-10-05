@@ -42,11 +42,11 @@ Les variables publiques et secrètes attendues sont documentées dans `.env.exam
 Pour activer l'envoi des demandes :
 
 1. configurer `RESEND_API_KEY`, `NEXORA_CONTACT_EMAIL` et `NEXORA_EMAIL_FROM` ;
-2. configurer `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` et `RATE_LIMIT_SALT` ;
+2. configurer idéalement `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` et `RATE_LIMIT_SALT` pour une limitation distribuée ;
 3. vérifier le domaine d'expédition auprès du fournisseur d'e-mail ;
 4. envoyer une demande de test depuis la prévisualisation Vercel avant la promotion en production.
 
-En production, l'API refuse volontairement les demandes si le stockage de limitation n'est pas configuré. Cela évite d'exposer un formulaire public sans protection anti-abus.
+Sans Redis, l'API utilise une limitation en mémoire par instance, avec des adresses IP hachées par une clé aléatoire propre au processus. Cette protection permet le lancement ; Redis reste recommandé pour appliquer les quotas de façon uniforme sur toutes les instances.
 
 ## Structure
 
@@ -71,4 +71,3 @@ Les services, projets, FAQ et futurs témoignages sont centralisés dans `data/`
 ## Ressources de marque
 
 Le logo officiel fourni par NEXORA DIGITAL pilote les couleurs et la direction artistique. Les visuels de services ont été créés spécifiquement pour ce projet, puis convertis en WebP pour le web. Aucun témoignage ni résultat chiffré fictif n'est publié.
-
