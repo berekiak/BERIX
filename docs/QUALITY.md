@@ -40,3 +40,14 @@ Robots, manifest, favicon, Open Graph et les quatre nouvelles captures de projet
 Le fichier Figma contient les tokens, composants et wireframes éditables ordinateur/mobile. Le transfert des visuels par l’outil Figma a été tenté et renvoie HTTP 405 ; les emplacements restent nommés et les ressources sont disponibles dans `public/images/`. Les wireframes ne sont pas présentés comme des maquettes finales avec visuels intégrés.
 
 Chrome/Chromium a été testé. Une validation dans Safari et Edge réels reste à réaliser sur ces applications. Le domaine personnalisé et la réception dans la messagerie destinataire doivent être contrôlés avec les accès correspondants. Redis distribué, CMS, anglais, espace client, calendrier et analytics restent des intégrations préparées, à configurer selon les besoins.
+
+
+## Suivi du 6 octobre 2026 — Google Search
+
+- Propriété Search Console vérifiée et accessible ; 23 inspections récupérées : 7 pages indexées, 4 découvertes et 12 inconnues de Google.
+- Redirection permanente ajoutée pour l’ancienne page de transformation numérique ; quatre redirections de production testées : HTTP 308, puis HTTP 200.
+- Descriptions SEO des huit services et quatre titres de pages corrigés. L’audit de production des 12 pages modifiées confirme les nouvelles métadonnées et aucun blocage d’indexabilité.
+- Sitemap de 23 URL accepté puis téléchargé par Google le 5 octobre à 23:53 UTC : aucune erreur, aucun avertissement. Le téléchargement du sitemap ne signifie pas que toutes ses URL sont déjà indexées.
+- Neuf tests, lint et build passés ; accueil, destination de la redirection et accès au formulaire de devis inspectés dans Chrome.
+- Import Figma toujours bloqué par HTTP 405 sur les deux formats pris en charge, sans modification du canvas. Aucun domaine d’envoi vérifié disponible pour activer les confirmations aux prospects ; destinataire professionnel confirmé.
+- Résultats détaillés : `SEO_AUDIT.md`, `SEO_INSPECTIONS.json`, `SEO_DELIVERY.json`.

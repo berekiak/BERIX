@@ -1,0 +1,100 @@
+{
+  "codeCommit": "de01b2a3a24e45acd1f5477880e06020980e7413",
+  "sitemapSubmission": {
+    "siteUrl": "https://nexora-digital-rdc.vercel.app/",
+    "attempted": 1,
+    "submitted": 1,
+    "failed": 0,
+    "results": [
+      {
+        "sitemapUrl": "https://nexora-digital-rdc.vercel.app/sitemap.xml",
+        "accepted": true,
+        "confirmed": true,
+        "lastSubmitted": "2026-10-05T23:53:03.143Z",
+        "isPending": true,
+        "isSitemapsIndex": false,
+        "type": "sitemap",
+        "warnings": "0",
+        "errors": "0"
+      }
+    ],
+    "message": "Submitted 1 of 1 sitemap(s) to Search Console for https://nexora-digital-rdc.vercel.app/. Submitting queues a download; it does not index the URLs.",
+    "actions": [
+      "Re-check list_sitemaps in a few hours: warnings, errors and indexed counts appear only after Google has downloaded the sitemap."
+    ]
+  },
+  "sitemapProcessed": {
+    "siteUrl": "https://nexora-digital-rdc.vercel.app/",
+    "sitemaps": [
+      {
+        "path": "https://nexora-digital-rdc.vercel.app/sitemap.xml",
+        "lastSubmitted": "2026-10-05T23:53:03.143Z",
+        "isPending": false,
+        "isSitemapsIndex": false,
+        "type": "sitemap",
+        "lastDownloaded": "2026-10-05T23:53:05.751Z",
+        "warnings": "0",
+        "errors": "0",
+        "contents": [
+          {
+            "type": "web",
+            "submitted": "23",
+            "indexed": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "metadataAudit": {
+    "total_pages": 12,
+    "total_issues": 20,
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 20,
+      "info": 0
+    },
+    "indexable_pages": 12,
+    "non_indexable_pages": 0
+  },
+  "redirects": [
+    {
+      "source": "/services/transformation-numerique",
+      "destination": "/solutions",
+      "status": 308,
+      "finalStatus": 200
+    },
+    {
+      "source": "/services/applications",
+      "destination": "/services/applications-web",
+      "status": 308,
+      "finalStatus": 200
+    },
+    {
+      "source": "/services/outils-de-gestion",
+      "destination": "/services/solutions-gestion",
+      "status": 308,
+      "finalStatus": 200
+    },
+    {
+      "source": "/services/sites-internet",
+      "destination": "/services/sites-web",
+      "status": 308,
+      "finalStatus": 200
+    }
+  ],
+  "validation": {
+    "tests": 9,
+    "lint": "passed",
+    "build": "passed"
+  },
+  "figmaImport": {
+    "status": "blocked",
+    "httpStatus": 405,
+    "formats": [
+      "multipart/form-data",
+      "image/webp raw bytes"
+    ]
+  }
+}
